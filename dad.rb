@@ -1,7 +1,7 @@
 require 'slack-ruby-bot'
 require 'httparty'
 
-class Dad < SlackRubyBot::Bot
+class DadBot < SlackRubyBot::Bot
   help do
     title 'Dad Jokes'
     desc 'Tells only the finest jokes'
@@ -11,15 +11,15 @@ class Dad < SlackRubyBot::Bot
     end
 
     command 'you there?' do
-      desc 'dad will acknowledge you. Finally, approval is only a few keystrokes away!'
+      desc 'dad-bot will acknowledge you. Finally, approval is only a few keystrokes away!'
     end
 
-    command 'good one dad' do
-      desc 'Give dad some credit every now and then. He will appreciate it!'
+    command 'good one dad-bot' do
+      desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
   end
 
-  command('you there?') do |client, data, match|
+  command(/(are )?you there\?/) do |client, data, match|
     response = "I'm right here pal."
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -31,7 +31,19 @@ class Dad < SlackRubyBot::Bot
     )
   end
 
-  scan(/good one dad/) do |client, data, match|
+  scan(/(hi|hey|hello) dad-bot/) do |client, data, match|
+    response = "Well hey there sport!"
+    client.web_client.chat_postMessage(
+      channel: data.channel,
+      as_user: true,
+      attachments: [
+        "fallback": response,
+        "pretext": response
+      ]
+    )
+  end
+
+  scan(/(good|nice) one dad-bot/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -58,4 +70,4 @@ class Dad < SlackRubyBot::Bot
   end
 end
 
-Dad.run
+DadBot.run
