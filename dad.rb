@@ -11,14 +11,14 @@ class Dad < SlackRubyBot::Bot
     end
   end
 
-  command('dadjoke') do |client, data, match|
-    client.say(channel: data.channel, text: joke)
-  end
-
-  def joke
+  command(/^dadjoke/) do |client, data, match|
     response = HTTParty.get('https://icanhazdadjoke.com/slack', format: :plain)
-    parsed_response = JSON.parse(response.body, symbolize_names: true)
-    parsed_response[:attachments][0][:text]
+    attachments = JSON.parse(response.body, symbolize_names: true)[:attachments]
+    client.web_client.chat_postMessage(
+      channel: data.channel,
+      as_user: true,
+      attachments: attachments
+    )
   end
 end
 
