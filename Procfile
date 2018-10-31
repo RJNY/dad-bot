@@ -1,1 +1,1 @@
-console: bundle exec ruby weatherbot.rb
+console: bundle exec ruby dad.rb
