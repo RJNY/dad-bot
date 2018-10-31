@@ -23,6 +23,18 @@ class Dad < SlackRubyBot::Bot
     )
   end
 
+  scan(/good one dad/) do |client, data, match|
+    response = "Thanks champ!"
+    client.web_client.chat_postMessage(
+      channel: data.channel,
+      as_user: true,
+      attachments: [
+        "fallback": response,
+        "pretext": response
+      ]
+    )
+  end
+
   command('tell me a joke') do |client, data, match|
     response = JSON.parse(HTTParty.get('https://icanhazdadjoke.com/slack', format: :plain), symbolize_names: true)
     joke = response[:attachments][0][:text]
