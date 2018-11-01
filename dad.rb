@@ -23,7 +23,7 @@ class DadBot < SlackRubyBot::Bot
     end
   end
 
-  command(/^tell me a joke/i) do |client, data, match|
+  command(/tell (me|us) a joke/i) do |client, data, match|
     response = JSON.parse(HTTParty.get('https://icanhazdadjoke.com/slack', format: :plain), symbolize_names: true)
     joke = response[:attachments][0][:text]
 
