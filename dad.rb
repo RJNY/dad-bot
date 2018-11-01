@@ -19,7 +19,21 @@ class DadBot < SlackRubyBot::Bot
     end
   end
 
-  match(/^(<bot>)(are )?you there\?/) do |client, data, match|
+  command('tell me a joke') do |client, data, match|
+    response = JSON.parse(HTTParty.get('https://icanhazdadjoke.com/slack', format: :plain), symbolize_names: true)
+    joke = response[:attachments][0][:text]
+
+    client.web_client.chat_postMessage(
+      channel: data.channel,
+      as_user: true,
+      attachments: [
+        "fallback": joke,
+        "pretext": joke
+      ]
+    )
+  end
+
+  command(/(are )?you there\?/) do |client, data, match|
     response = "I'm right here pal."
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -31,7 +45,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/(hi|hey|hello) (dad|Dad|<bot>)/) do |client, data, match|
+  match(/^(hi|hey|hello) (dad|Dad|dad-bot|\@dad-bot)/) do |client, data, match|
     response = "Hey there sport!"
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -43,7 +57,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^(good|nice) one (dad|Dad|<bot>)/) do |client, data, match|
+  match(/^(good|nice) one (dad|Dad|dad-bot|\@dad-bot)/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -51,20 +65,6 @@ class DadBot < SlackRubyBot::Bot
       attachments: [
         "fallback": response,
         "pretext": response
-      ]
-    )
-  end
-
-  command('tell me a joke') do |client, data, match|
-    response = JSON.parse(HTTParty.get('https://icanhazdadjoke.com/slack', format: :plain), symbolize_names: true)
-    joke = response[:attachments][0][:text]
-
-    client.web_client.chat_postMessage(
-      channel: data.channel,
-      as_user: true,
-      attachments: [
-        "fallback": joke,
-        "pretext": joke
       ]
     )
   end
