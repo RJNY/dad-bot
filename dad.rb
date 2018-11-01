@@ -61,7 +61,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^([gG]ood|[nN]ice) one [dD]ad)/) do |client, data, match|
+  match(/^([gG]ood|[nN]ice) one [dD]ad/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
