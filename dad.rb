@@ -14,11 +14,11 @@ class DadBot < SlackRubyBot::Bot
       desc 'dad-bot will acknowledge you. Finally, approval is only a few keystrokes away!'
     end
 
-    match 'good one dad' do
+    command 'good one dad' do
       desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
 
-    match 'hi dad' do
+    command 'hi dad' do
       desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
   end
