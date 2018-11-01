@@ -1,1 +1,1 @@
-release: bundle exec ruby dad.rb
+web: bundle exec ruby dad.rb
