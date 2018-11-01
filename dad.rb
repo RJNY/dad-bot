@@ -45,7 +45,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^(hi|hey|hello) (dad|Dad|dad-bot|\@dad-bot)/) do |client, data, match|
+  match(/^(hi|hey|hello) (dad|Dad|dad-bot|\@Dad)/) do |client, data, match|
     response = "Hey there sport!"
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -57,7 +57,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^(good|nice) one (dad|Dad|dad-bot|\@dad-bot)/) do |client, data, match|
+  match(/^(good|nice) one (dad|Dad|dad-bot|\@Dad)/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
