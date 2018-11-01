@@ -19,7 +19,7 @@ class DadBot < SlackRubyBot::Bot
     end
   end
 
-  command(/(are )?you there\?/) do |client, data, match|
+  match(/^(<bot>)(are )?you there\?/) do |client, data, match|
     response = "I'm right here pal."
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -31,8 +31,8 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  scan(/(hi|hey|hello) dad/) do |client, data, match|
-    response = "Well hey there sport!"
+  match(/(hi|hey|hello) (dad|Dad|<bot>)/) do |client, data, match|
+    response = "Hey there sport!"
     client.web_client.chat_postMessage(
       channel: data.channel,
       as_user: true,
@@ -43,7 +43,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  scan(/(good|nice) one dad/) do |client, data, match|
+  match(/^(good|nice) one (dad|Dad|<bot>)/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
