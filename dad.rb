@@ -14,7 +14,11 @@ class DadBot < SlackRubyBot::Bot
       desc 'dad-bot will acknowledge you. Finally, approval is only a few keystrokes away!'
     end
 
-    command 'good one dad-bot' do
+    match 'good one dad' do
+      desc 'Give dad-bot some credit every now and then. He will appreciate it!'
+    end
+
+    match 'hi dad' do
       desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
   end
@@ -45,7 +49,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^(hi|hey|hello) (dad|Dad|dad-bot|\@Dad)/) do |client, data, match|
+  match(/^[hH](i|ey|ello) [dD]ad/) do |client, data, match|
     response = "Hey there sport!"
     client.web_client.chat_postMessage(
       channel: data.channel,
@@ -57,7 +61,7 @@ class DadBot < SlackRubyBot::Bot
     )
   end
 
-  match(/^(good|nice) one (dad|Dad|dad-bot|\@Dad)/) do |client, data, match|
+  match(/^([gG]ood|[nN]ice) one [dD]ad)/) do |client, data, match|
     response = "Thanks champ!"
     client.web_client.chat_postMessage(
       channel: data.channel,
