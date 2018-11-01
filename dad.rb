@@ -6,19 +6,19 @@ class DadBot < SlackRubyBot::Bot
     title 'Dad Jokes'
     desc 'Tells only the finest jokes'
 
-    command 'tell me a joke' do
+    command 'dad tell me a joke' do
       desc 'will tell a random joke.'
     end
 
-    command 'you there?' do
+    command 'dad are you there?' do
       desc 'dad-bot will acknowledge you. Finally, approval is only a few keystrokes away!'
     end
 
-    command 'good one dad' do
+    command 'good/nice one dad' do
       desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
 
-    command 'hi dad' do
+    command 'hi/hey/hello/sup dad' do
       desc 'Give dad-bot some credit every now and then. He will appreciate it!'
     end
   end
