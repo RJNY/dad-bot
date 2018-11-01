@@ -1,1 +1,1 @@
-console: bundle exec ruby dad.rb
+release: bundle exec ruby dad.rb
