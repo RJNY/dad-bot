@@ -1,1 +1,1 @@
-web: bundle exec ruby dad.rb
+console: bundle exec ruby dad.rb
