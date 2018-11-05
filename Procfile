@@ -1,1 +1,1 @@
-web: bundle exec ruby dad.rb
+worker: bundle exec ruby dad.rb
